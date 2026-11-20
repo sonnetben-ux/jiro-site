@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JIRO – Metalcore, Paris · Site officiel</title>
+<meta name="description" content="JIRO, groupe de metalcore de Paris. Merch officiel, concerts, clips et musique.">
+<meta property="og:title" content="JIRO – Site officiel">
+<meta property="og:description" content="Groupe de metalcore de Paris. Merch officiel, concerts, musique.">
+<meta property="og:image" content="img/hero.jpg">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="img/mono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,800;62..125,900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mock" data-i18n="mock">Version de travail : photos provisoires, boutique et dates bientôt en ligne.</div>
+
+<header class="nav" id="nav">
+  <div class="in">
+    <a class="brand" href="#accueil" aria-label="JIRO, accueil"><img src="img/logo.png" alt="JIRO"></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" data-i18n="menu">Menu</button>
+    <ul id="menu">
+      <li><a href="#accueil" data-i18n="nav_home">Accueil</a></li>
+      <li><a href="#concerts" data-i18n="nav_shows">Concerts</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+      <li><a href="#boutique" class="shop" data-i18n="nav_shop">Boutique</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ACCUEIL -->
+<div class="view" id="v-accueil">
+  <section class="hero">
+    <img class="bg" src="img/hero.jpg" alt="" aria-hidden="true">
+    <div class="in">
+      <span class="eyebrow">Metalcore · Paris</span>
+      <h1><img class="wm" src="img/logo.png" alt="JIRO"></h1>
+      <p data-i18n="hero_p">Le merch officiel est en ligne. T-shirts, CD et tote bags, expédiés depuis Paris dans toute l'Europe.</p>
+      <div class="cta">
+        <a class="btn solid" href="#boutique" data-i18n="cta_shop">Voir la boutique</a>
+        <a class="btn" href="#concerts" data-i18n="cta_shows">Prochains concerts</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="head"><h2 data-i18n="h_merch">Merch</h2><a class="btn" href="#boutique" data-i18n="all_products">Tous les produits</a></div>
+      <div class="grid" data-products="4"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="head"><h2 data-i18n="h_clip">Dernier clip</h2></div>
+      <a class="clip" id="clip" target="_blank" rel="noopener">
+        <img src="img/live1.jpg" alt="">
+        <span class="play"><i aria-hidden="true"></i><b id="clip-title"></b></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="head"><h2 data-i18n="h_listen">Écouter</h2></div>
+      <div class="listen" id="listen"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <div class="head"><h2 data-i18n="h_next">Prochaines dates</h2><a class="btn" href="#concerts" data-i18n="all_shows">Toutes les dates</a></div>
+      <ul class="shows" data-shows="2"></ul>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"><img src="img/live1.jpg" alt=""><img src="img/live2.jpg" alt=""><img src="img/live3.jpg" alt=""></div>
+</div>
+
+<!-- CONCERTS -->
+<div class="view" id="v-concerts" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in">
+      <div class="head"><div><span class="eyebrow" data-i18n="live">En live</span><h2 data-i18n="nav_shows">Concerts</h2></div></div>
+      <ul class="shows" data-shows="all"></ul>
+      <p style="color:var(--ash);margin-top:24px" data-i18n="booking_line">Programmateurs, salles, festivals : écrivez-nous depuis la page Contact.</p>
+    </div>
+  </section>
+</div>
+
+<!-- BOUTIQUE -->
+<div class="view" id="v-boutique" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in">
+      <div class="head"><div><span class="eyebrow" data-i18n="official">Officiel</span><h2 data-i18n="nav_shop">Boutique</h2></div><a class="btn solid shop-link" data-i18n="shop_all">Toute la boutique</a></div>
+      <div class="grid" data-products="all"></div>
+      <div class="shopnote">
+        <div><b data-i18n="s1t">Paiement sécurisé</b><span data-i18n="s1">Paiement par carte via SumUp.</span></div>
+        <div><b data-i18n="s2t">Livraison en Europe</b><span data-i18n="s2">Colissimo ou point relais Mondial Relay, expédié sous une semaine.</span></div>
+        <div><b data-i18n="s3t">Retrait en concert</b><span data-i18n="s3">Commandez en ligne, récupérez au stand le soir du concert.</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="view" id="v-contact" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in">
+      <div class="head"><div><span class="eyebrow" data-i18n="write">Écrire au groupe</span><h2 data-i18n="nav_contact">Contact</h2></div></div>
+      <div class="contact">
+        <dl>
+          <div><dt data-i18n="c_mail">Email</dt><dd><a id="mail"></a></dd></div>
+          <div><dt data-i18n="c_label">Label</dt><dd>Telema Productions</dd></div>
+          <div><dt data-i18n="c_social">Réseaux</dt><dd style="font-size:16px;display:flex;flex-wrap:wrap;gap:6px 16px" id="socials"></dd></div>
+        </dl>
+        <div>
+          <p data-i18n="c_text" style="margin-top:0;font-size:18px">Booking, presse, question sur une commande : un email suffit, on répond vite.</p>
+          <a class="btn solid" id="mail-btn" data-i18n="c_btn">Nous écrire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MENTIONS LÉGALES -->
+<div class="view" id="v-mentions" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in legal">
+      <h2>Mentions légales</h2>
+      <h3>Éditeur</h3>
+      <p>Telema Productions, SIREN 907 979 512, <span class="todo">adresse du siège à compléter</span>.</p>
+      <p>Directeur de la publication : <span class="todo">nom à compléter</span>.</p>
+      <p>Contact : <a class="mail-plain"></a></p>
+      <h3>Hébergement</h3>
+      <p>GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <h3>Boutique</h3>
+      <p>Les ventes en ligne sont réalisées sur la boutique SumUp de Telema Productions, qui affiche ses propres conditions générales de vente.</p>
+      <h3>Données personnelles</h3>
+      <p>Ce site ne dépose pas de cookie de suivi et ne collecte aucune donnée. Seul votre choix de langue est gardé dans votre navigateur.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="in">
+    <img src="img/mono.png" alt="">
+    <nav><a href="#boutique" data-i18n="nav_shop">Boutique</a><a href="#concerts" data-i18n="nav_shows">Concerts</a><a href="#contact" data-i18n="nav_contact">Contact</a><a href="#mentions" data-i18n="legal">Mentions légales</a></nav>
+    <span>© <span id="year"></span> JIRO · Telema Productions</span>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
