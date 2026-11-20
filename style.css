@@ -1,7 +1,7 @@
 :root{
-  /* DA « Shattering » : nuit indigo du clip, bleu électrique, rouge des éclairs */
-  --black:#0b0a24; --coal:#16134a; --steel:#2e2a7a; --bone:#eef0ff; --ash:#a6a9dc; --brass:#ff2d3f; --violet:#5b45ff;
-  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  /* DA « Shattering » (relevée image par image dans le clip) : noir, rouge des lumières de scène, bleu outremer de la ville, crème du titre, soleil rouge */
+  --black:#070607; --coal:#130c0f; --steel:#2b1a20; --bone:#f3e7c4; --ash:#b3a39f; --brass:#e5202e; --violet:#2f3cff;
+  --display:"Archivo","Arial Black",Impact,sans-serif;
   --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
@@ -45,7 +45,7 @@ h1,h2,h3{font-family:var(--display);font-weight:900;font-stretch:125%;text-trans
 /* hero */
 .hero{position:relative;min-height:min(78vh,760px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
 .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;max-width:none}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,10,36,.85) 0%,rgba(11,10,36,.2) 65%),linear-gradient(180deg,rgba(11,10,36,.1) 0%,rgba(11,10,36,.3) 50%,var(--black) 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,6,7,0) 55%,var(--black) 100%)}
 .hero .eyebrow,.hero p{text-shadow:0 1px 12px rgba(0,0,0,.9)}
 .hero .in{padding-block:56px;display:grid;gap:22px}
 .hero .wm{width:min(520px,80%);height:auto}
@@ -138,7 +138,7 @@ footer a:hover{color:var(--bone)}
 /* ===== DA Shattering ===== */
 body{font-stretch:100%}
 h1,h2,h3{font-stretch:100%;letter-spacing:.02em}
-.nav{background:rgba(11,10,36,.9)}
+.nav{background:rgba(7,6,7,.9)}
 .nav ul a{font-family:var(--display);font-size:16px;letter-spacing:.1em}
 .nav ul a.shop{background:var(--brass);color:var(--bone)}
 .btn{font-family:var(--display);font-size:18px;letter-spacing:.08em;font-stretch:100%}
@@ -147,7 +147,7 @@ h1,h2,h3{font-stretch:100%;letter-spacing:.02em}
 .eyebrow{color:var(--brass)}
 .mock{background:var(--violet);color:var(--bone)}
 .hero{min-height:min(82vh,780px)}
-.hero .wm{filter:drop-shadow(0 0 24px rgba(91,69,255,.55))}
+.hero .wm{filter:drop-shadow(0 4px 30px rgba(0,0,0,.6))}
 /* éclair rouge : la fissure du clip, utilisée comme séparateur */
 section.band{border-top:0;position:relative}
 section.band::before{content:"";position:absolute;left:0;right:0;top:-9px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 9 L140 8 L170 2 L205 15 L260 7 L420 10 L455 3 L470 14 L520 8 L700 9 L735 16 L760 4 L800 9 L960 8 L990 15 L1020 3 L1060 10 L1200 9' fill='none' stroke='%23ff2d3f' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat;filter:drop-shadow(0 0 6px rgba(255,45,63,.7))}
@@ -166,4 +166,23 @@ footer{border-top:1px solid var(--steel)}
 /* particules de lumière du clip */
 .hero .flecks{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1.5px 4px at 12% 22%,#fff,transparent),radial-gradient(1.5px 4px at 34% 64%,#fff,transparent),radial-gradient(1.5px 4px at 58% 18%,#fff,transparent),radial-gradient(1.5px 4px at 72% 48%,#fff,transparent),radial-gradient(1.5px 4px at 88% 30%,#fff,transparent),radial-gradient(1.5px 4px at 46% 84%,#fff,transparent);opacity:.7}
 .hero img.bg{object-position:75% center}
-@media (min-width:900px){.hero img.bg{left:30%;width:70%}.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--black) 30%,rgba(11,10,36,0) 48%)}}
+@media (min-width:900px){.hero img.bg{left:30%;width:70%}.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--black) 30%,rgba(7,6,7,0) 50%)}}
+
+/* ===== v3 : vraies images du clip ===== */
+h1,h2,h3{font-stretch:125%;font-weight:900;color:var(--bone)}
+.nav ul a,.btn{font-stretch:115%;font-size:14px}
+.hero .wm{filter:brightness(0) saturate(100%) invert(93%) sepia(14%) saturate(560%) hue-rotate(338deg)}
+/* soleil rouge du clip derrière le logo */
+.hero .sun{position:absolute;z-index:-1;width:min(560px,70vw);aspect-ratio:1;border-radius:50%;background:var(--brass);left:max(-80px,calc(50% - 680px));top:50%;transform:translateY(-50%);opacity:.92;box-shadow:0 0 120px rgba(229,32,46,.45)}
+@media (max-width:760px){.hero .sun{left:-30vw;width:90vw}}
+.hero .flecks{display:none}
+.hero .eyebrow{color:var(--bone)}
+.prod .pic{background:radial-gradient(90% 70% at 50% 40%,#3a0d14,var(--coal) 75%);border-color:var(--steel)}
+.prod .pic img{opacity:.8;filter:brightness(0) saturate(100%) invert(93%) sepia(14%) saturate(560%) hue-rotate(338deg)}
+.mock{background:var(--brass)}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.strip img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+@media (max-width:620px){.strip{grid-template-columns:1fr}}
+.clip img{opacity:.75}
+.listen a small{color:var(--ash)}
+.blue{background:var(--violet)}

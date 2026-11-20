@@ -2,7 +2,7 @@
 const T = {
   fr: {},
   en: {
-    mock: "Work in progress: temporary photos, shop and dates coming soon.",
+    mock: "Work in progress: merch photos and dates coming soon.",
     menu: "Menu", nav_home: "Home", nav_shows: "Shows", nav_contact: "Contact", nav_shop: "Shop",
     hero_p: "New video “Shattering” is out. The T-shirt from the video and all official merch are in the shop, shipped from Paris.",
     cta_shop: "Shop now", cta_shows: "Upcoming shows", h_merch: "Merch", all_products: "All products",

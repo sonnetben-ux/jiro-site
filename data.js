@@ -15,7 +15,7 @@ const LINKS = {
   // Dernier clip : mettre l'adresse YouTube de la vidéo et son titre.
   clipUrl: "https://www.youtube.com/watch?v=rVrquRGNso8",
   clipTitle: { fr: "Shattering – clip officiel", en: "Shattering – official video" },
-  clipImg: "https://i.ytimg.com/vi/rVrquRGNso8/hqdefault.jpg"
+  clipImg: "img/clip-soleil.jpg"
 };
 
 // Sorties : chaque lien ouvre une page qui liste toutes les plateformes
