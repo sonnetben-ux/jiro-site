@@ -4,7 +4,7 @@ const T = {
   en: {
     mock: "Work in progress: temporary photos, shop and dates coming soon.",
     menu: "Menu", nav_home: "Home", nav_shows: "Shows", nav_contact: "Contact", nav_shop: "Shop",
-    hero_p: "Official merch is online. T-shirts, CDs and tote bags, shipped from Paris across Europe.",
+    hero_p: "New video “Shattering” is out. The T-shirt from the video and all official merch are in the shop, shipped from Paris.",
     cta_shop: "Shop now", cta_shows: "Upcoming shows", h_merch: "Merch", all_products: "All products",
     h_clip: "Latest video", h_listen: "Listen", h_next: "Upcoming shows", all_shows: "All dates",
     live: "Live", booking_line: "Promoters, venues, festivals: get in touch from the Contact page.",

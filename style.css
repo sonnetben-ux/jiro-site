@@ -1,7 +1,8 @@
 :root{
-  --black:#0b0b0c; --coal:#151517; --steel:#26262a; --bone:#ece8df; --ash:#9a968e; --brass:#c8a96a;
-  --display:"Archivo","Arial Narrow",Impact,sans-serif;
-  --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* DA « Shattering » : nuit indigo du clip, bleu électrique, rouge des éclairs */
+  --black:#0b0a24; --coal:#16134a; --steel:#2e2a7a; --bone:#eef0ff; --ash:#a6a9dc; --brass:#ff2d3f; --violet:#5b45ff;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -44,7 +45,7 @@ h1,h2,h3{font-family:var(--display);font-weight:900;font-stretch:125%;text-trans
 /* hero */
 .hero{position:relative;min-height:min(78vh,760px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
 .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;max-width:none}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,11,12,.7) 0%,rgba(11,11,12,0) 60%),linear-gradient(180deg,rgba(11,11,12,.15) 0%,rgba(11,11,12,.35) 45%,var(--black) 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,10,36,.85) 0%,rgba(11,10,36,.2) 65%),linear-gradient(180deg,rgba(11,10,36,.1) 0%,rgba(11,10,36,.3) 50%,var(--black) 100%)}
 .hero .eyebrow,.hero p{text-shadow:0 1px 12px rgba(0,0,0,.9)}
 .hero .in{padding-block:56px;display:grid;gap:22px}
 .hero .wm{width:min(520px,80%);height:auto}
@@ -133,3 +134,36 @@ footer a:hover{color:var(--bone)}
 .legal .todo{background:var(--brass);color:var(--black);padding:0 4px}
 .price{white-space:nowrap}
 @media (max-width:620px){.grid{grid-template-columns:1fr 1fr;gap:12px}.prod h3{font-size:15px}.price{font-size:15px}}
+
+/* ===== DA Shattering ===== */
+body{font-stretch:100%}
+h1,h2,h3{font-stretch:100%;letter-spacing:.02em}
+.nav{background:rgba(11,10,36,.9)}
+.nav ul a{font-family:var(--display);font-size:16px;letter-spacing:.1em}
+.nav ul a.shop{background:var(--brass);color:var(--bone)}
+.btn{font-family:var(--display);font-size:18px;letter-spacing:.08em;font-stretch:100%}
+.btn.solid{background:var(--brass);border-color:var(--brass);color:var(--bone)}
+.btn:hover,.btn.solid:hover{background:var(--bone);border-color:var(--bone);color:var(--black)}
+.eyebrow{color:var(--brass)}
+.mock{background:var(--violet);color:var(--bone)}
+.hero{min-height:min(82vh,780px)}
+.hero .wm{filter:drop-shadow(0 0 24px rgba(91,69,255,.55))}
+/* éclair rouge : la fissure du clip, utilisée comme séparateur */
+section.band{border-top:0;position:relative}
+section.band::before{content:"";position:absolute;left:0;right:0;top:-9px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 18' preserveAspectRatio='none'%3E%3Cpath d='M0 9 L140 8 L170 2 L205 15 L260 7 L420 10 L455 3 L470 14 L520 8 L700 9 L735 16 L760 4 L800 9 L960 8 L990 15 L1020 3 L1060 10 L1200 9' fill='none' stroke='%23ff2d3f' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat;filter:drop-shadow(0 0 6px rgba(255,45,63,.7))}
+.prod .pic{background:radial-gradient(120% 90% at 50% 20%,var(--steel),var(--coal) 70%);border-color:var(--steel)}
+.prod .pic img{opacity:.55}
+.prod:hover .pic{border-color:var(--brass)}
+.listen a,.shopnote div{background:var(--coal)}
+.shopnote{background:var(--steel);border-color:var(--steel)}
+.listen a:hover{border-color:var(--brass)}
+.clip .play i{border-color:var(--brass)}
+.clip .play i::before{border-left-color:var(--brass)}
+.date{color:var(--bone)}
+.shows li{border-color:var(--steel)}
+.tag-ex{background:var(--brass);color:var(--bone)}
+footer{border-top:1px solid var(--steel)}
+/* particules de lumière du clip */
+.hero .flecks{position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(1.5px 4px at 12% 22%,#fff,transparent),radial-gradient(1.5px 4px at 34% 64%,#fff,transparent),radial-gradient(1.5px 4px at 58% 18%,#fff,transparent),radial-gradient(1.5px 4px at 72% 48%,#fff,transparent),radial-gradient(1.5px 4px at 88% 30%,#fff,transparent),radial-gradient(1.5px 4px at 46% 84%,#fff,transparent);opacity:.7}
+.hero img.bg{object-position:75% center}
+@media (min-width:900px){.hero img.bg{left:30%;width:70%}.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--black) 30%,rgba(11,10,36,0) 48%)}}
