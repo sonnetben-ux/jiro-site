@@ -13,8 +13,9 @@ const LINKS = {
   youtube: "https://www.youtube.com/@jirotheband",
   email: "jirotheband@gmail.com",
   // Dernier clip : mettre l'adresse YouTube de la vidéo et son titre.
-  clipUrl: "https://www.youtube.com/@jirotheband",
-  clipTitle: { fr: "Nos clips sur YouTube", en: "Our videos on YouTube" }
+  clipUrl: "https://www.youtube.com/watch?v=rVrquRGNso8",
+  clipTitle: { fr: "Shattering – clip officiel", en: "Shattering – official video" },
+  clipImg: "https://i.ytimg.com/vi/rVrquRGNso8/hqdefault.jpg"
 };
 
 // Sorties : chaque lien ouvre une page qui liste toutes les plateformes

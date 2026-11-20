@@ -74,6 +74,7 @@ function render() {
   RELEASES.forEach(r => { const a = el("a"); ext(a, r.url); const s = el("div", null, r.title); s.append(el("small", null, t("listen_all"))); a.append(s, el("span", null, "↗")); listen.append(a); });
 
   const clip = document.getElementById("clip"); ext(clip, LINKS.clipUrl);
+  if (LINKS.clipImg) document.getElementById("clip-img").src = LINKS.clipImg;
   document.getElementById("clip-title").textContent = LINKS.clipTitle[lang];
 }
 
