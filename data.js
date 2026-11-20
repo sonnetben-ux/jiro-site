@@ -3,7 +3,7 @@
 // =====================================================================
 
 // Adresse de la boutique SumUp (à remplacer quand la boutique est publiée).
-const SHOP_URL = "https://https-www-jiro-official-com.sumupstore.com";
+const SHOP_URL = "https://jiro-official.sumupstore.com";
 
 // Liens
 const LINKS = {
