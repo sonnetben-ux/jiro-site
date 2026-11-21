@@ -16,10 +16,10 @@ const T = {
     c_text: "Booking, press, a question about an order: just send an email, we answer fast.", c_btn: "Email us",
     legal: "Legal notice",
     tickets: "Tickets", buy: "Buy", soon: "Coming soon", noshow: "No dates announced yet. Follow us on Instagram to be the first to know.",
-    listen_all: "All platforms"
+    listen_all: "All platforms", onesize: "One size", sizes: "Sizes", buy_btn: "Buy", buy_note: "Payment, size choice and shipping are handled on our secure SumUp shop."
   }
 };
-const FR = { tickets: "Billets", buy: "Acheter", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.", listen_all: "Toutes les plateformes" };
+const FR = { tickets: "Billets", buy: "Acheter", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.", listen_all: "Toutes les plateformes", onesize: "Taille unique", sizes: "Tailles", buy_btn: "Acheter", buy_note: "Le paiement, le choix de la taille et la livraison se font sur notre boutique sécurisée SumUp." };
 const MONTHS = { fr: ["JANV", "FÉV", "MARS", "AVR", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DÉC"], en: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"] };
 
 let lang = "fr";
@@ -37,18 +37,36 @@ function upcoming() {
   return SHOWS.filter(s => new Date(s.date + "T00:00:00") >= today).sort((a, b) => a.date.localeCompare(b.date));
 }
 
+function picImg(src) {
+  const im = document.createElement("img"); im.alt = "";
+  im.src = src || "img/mono.png"; if (src) im.className = "photo";
+  return im;
+}
+function renderProduct(p) {
+  const v = document.getElementById("v-produit"); const box = v.querySelector(".pp"); box.textContent = "";
+  const gal = el("div", "pp-gal"); (p.img.length ? p.img : [""]).forEach(s => { const f = el("div", "pic"); f.append(picImg(s)); gal.append(f); });
+  const info = el("div", "pp-info");
+  const back = el("a", "back", "← " + t("nav_shop")); back.href = "#boutique";
+  info.append(back, el("h2", null, p[lang]), el("p", "pp-price", p.p + " €"), el("p", "pp-desc", p.d[lang]));
+  if (p.sizes.length) {
+    const s = el("div", "pp-sizes"); s.append(el("span", "eyebrow", t("sizes")));
+    const ul = el("div", "chips"); p.sizes.forEach(z => ul.append(el("span", "chip", z))); s.append(ul);
+    info.append(s);
+  }
+  const buy = el("a", "btn solid", t("buy_btn")); ext(buy, p.url || SHOP_URL);
+  info.append(buy, el("p", "pp-note", t("buy_note")));
+  box.append(gal, info);
+  document.title = p[lang] + " · JIRO";
+}
 function render() {
   document.querySelectorAll("[data-products]").forEach(g => {
     g.textContent = "";
     const n = g.dataset.products === "all" ? PRODUCTS.length : +g.dataset.products;
     PRODUCTS.slice(0, n).forEach(p => {
-      const a = el("a", "prod");
-      if (SHOP_URL) ext(a, SHOP_URL); else a.href = "#boutique";
-      const pic = el("div", "pic"); const im = document.createElement("img");
-      im.src = p.img || "img/mono.png"; im.alt = ""; if (p.img) im.style.cssText = "width:100%;height:100%;object-fit:cover;opacity:1";
-      pic.append(im);
-      const row = el("div", "row"); row.append(el("h3", null, p[lang]), el("span", "price", p.p ? p.p + " €" : ""));
-      a.append(pic, row, el("span", "meta", SHOP_URL ? p.m[lang] : t("soon")));
+      const a = el("a", "prod"); a.href = "#produit-" + p.id;
+      const pic = el("div", "pic"); pic.append(picImg(p.img[0]));
+      const row = el("div", "row"); row.append(el("h3", null, p[lang]), el("span", "price", p.p + " €"));
+      a.append(pic, row, el("span", "meta", p.sizes.length ? p.sizes.join(" · ") : t("onesize")));
       g.append(a);
     });
   });
@@ -83,6 +101,7 @@ function applyLang() {
   document.querySelectorAll("[data-i18n]").forEach(e => { e.textContent = t(e.dataset.i18n); });
   document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   render();
+  if (!document.getElementById("v-produit").hidden) route();
 }
 document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => { lang = b.dataset.lang; try { localStorage.setItem("jiro-lang", lang); } catch (e) {} applyLang(); }));
 
@@ -95,10 +114,13 @@ const soc = document.getElementById("socials");
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // Navigation entre pages
-const VIEWS = ["accueil", "concerts", "boutique", "contact", "mentions"];
+const VIEWS = ["accueil", "concerts", "boutique", "contact", "mentions", "produit"];
 const nav = document.getElementById("nav"), burger = document.getElementById("burger");
 function route() {
-  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "accueil";
+  const h = location.hash.slice(1);
+  const prod = h.startsWith("produit-") && PRODUCTS.find(p => p.id === h.slice(8));
+  const v = prod ? "produit" : VIEWS.includes(h) && h !== "produit" ? h : "accueil";
+  if (prod) renderProduct(prod); else document.title = "JIRO – Metalcore, Paris · Site officiel";
   VIEWS.forEach(x => { document.getElementById("v-" + x).hidden = x !== v; });
   document.querySelectorAll(".nav ul a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false");
