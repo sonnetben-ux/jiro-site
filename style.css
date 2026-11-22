@@ -214,3 +214,7 @@ section.band::before{top:-18px;height:36px;background:url(img/fil-rouge.svg) cen
 footer{border-top:0;position:relative}
 footer::before{content:"";position:absolute;left:0;right:0;top:-18px;height:36px;background:url(img/fil-rouge.svg) center/100% 100% no-repeat;transform:scaleX(-1);filter:drop-shadow(0 0 5px rgba(255,42,54,.75));pointer-events:none}
 .strip{margin-top:36px}
+
+/* accueil : logo seul */
+.hero{align-items:center}
+.hero .in{padding-block:80px}
