@@ -30,7 +30,7 @@ const RELEASES = [
 // Paiement : adresse du serveur de paiement (Cloudflare Worker) et clé
 // Web3Forms qui envoie chaque commande par email. Tant que CHECKOUT_API est
 // vide, le bouton « Payer » renvoie vers la boutique SumUp.
-const CHECKOUT_API = "";
+const CHECKOUT_API = "https://jiro-paiement.jirotheband.workers.dev";
 const FORM_KEY = "";
 
 // Concerts à venir, du plus proche au plus lointain.
