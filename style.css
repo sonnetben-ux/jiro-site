@@ -205,3 +205,12 @@ h1,h2,h3{font-stretch:125%;font-weight:900;color:var(--bone)}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{border:1px solid var(--steel);padding:6px 12px;font-weight:600;font-size:14px}
 .pp-note{margin:0;color:var(--ash);font-size:14px;max-width:46ch}
+
+/* fil rouge du clip Shattering (img/fil-rouge.svg), entièrement visible : sous le menu, entre les sections, au-dessus du pied de page */
+section.band::before{top:-18px;height:36px;background:url(img/fil-rouge.svg) center/100% 100% no-repeat;filter:drop-shadow(0 0 5px rgba(255,42,54,.75));z-index:2;pointer-events:none}
+.view>section.band:first-child::before{display:none}
+.nav{border-bottom:0;overflow:visible}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:36px;background:url(img/fil-rouge.svg) center/100% 100% no-repeat;filter:drop-shadow(0 0 5px rgba(255,42,54,.75));pointer-events:none}
+footer{border-top:0;position:relative}
+footer::before{content:"";position:absolute;left:0;right:0;top:-18px;height:36px;background:url(img/fil-rouge.svg) center/100% 100% no-repeat;transform:scaleX(-1);filter:drop-shadow(0 0 5px rgba(255,42,54,.75));pointer-events:none}
+.strip{margin-top:36px}
