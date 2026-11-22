@@ -28,6 +28,7 @@
       <li><a href="#concerts" data-i18n="nav_shows">Concerts</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
+    <a class="cartlink" href="#panier" aria-label="Panier"><span data-i18n="cart">Panier</span> <b id="cart-n">0</b></a>
     <div class="lang" role="group" aria-label="Langue / Language">
       <button type="button" data-lang="fr" aria-pressed="true">FR</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -97,7 +98,7 @@
 <div class="view" id="v-boutique" hidden>
   <section class="band" style="border-top:0">
     <div class="in">
-      <div class="head"><div><span class="eyebrow" data-i18n="official">Officiel</span><h2 data-i18n="nav_shop">Boutique</h2></div><a class="btn solid shop-link" data-i18n="shop_all">Toute la boutique</a></div>
+      <div class="head"><div><span class="eyebrow" data-i18n="official">Officiel</span><h2 data-i18n="nav_shop">Boutique</h2></div><a class="btn solid" href="#panier" data-i18n="see_cart">Voir le panier</a></div>
       <div class="grid" data-products="all"></div>
       <div class="shopnote">
         <div><b data-i18n="s1t">Paiement sécurisé</b><span data-i18n="s1">Paiement par carte via SumUp.</span></div>
@@ -112,6 +113,69 @@
 <div class="view" id="v-produit" hidden>
   <section class="band" style="border-top:0">
     <div class="in pp"></div>
+  </section>
+</div>
+
+<!-- PANIER -->
+<div class="view" id="v-panier" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in">
+      <div class="head"><div><span class="eyebrow" data-i18n="official">Officiel</span><h2 data-i18n="cart">Panier</h2></div></div>
+      <div id="cart-empty" class="cart-empty" hidden>
+        <p data-i18n="cart_empty">Ton panier est vide.</p>
+        <a class="btn solid" href="#boutique" data-i18n="cart_go">Voir le merch</a>
+      </div>
+      <div class="cart" id="cart-full">
+        <div>
+          <ul class="lines" id="cart-lines"></ul>
+          <form id="order" class="order" novalidate>
+            <h3 data-i18n="o_ship">Livraison</h3>
+            <div class="ship" id="ship"></div>
+            <p class="freeship" id="freeship"></p>
+            <h3 data-i18n="o_you">Tes coordonnées</h3>
+            <div class="row2">
+              <label><span data-i18n="f_name">Prénom et nom</span><input name="name" autocomplete="name" required></label>
+              <label><span data-i18n="f_email">Email</span><input name="email" type="email" autocomplete="email" required></label>
+            </div>
+            <label><span data-i18n="f_phone">Téléphone (pour le livreur)</span><input name="phone" type="tel" autocomplete="tel"></label>
+            <div class="addr" id="addr">
+              <label><span data-i18n="f_addr">Adresse</span><input name="address" autocomplete="street-address"></label>
+              <div class="row3">
+                <label><span data-i18n="f_zip">Code postal</span><input name="zip" autocomplete="postal-code"></label>
+                <label><span data-i18n="f_city">Ville</span><input name="city" autocomplete="address-level2"></label>
+                <label><span data-i18n="f_country">Pays</span><input name="country" autocomplete="country-name" value="France"></label>
+              </div>
+            </div>
+            <label class="relay" id="relay"><span data-i18n="f_relay">Point relais choisi (nom et ville)</span><input name="relay"><small><a href="https://www.mondialrelay.fr/trouver-le-point-relais-le-plus-proche-de-chez-moi/" target="_blank" rel="noopener" data-i18n="f_relay_find">Trouver un point relais Mondial Relay ↗</a></small></label>
+            <label class="show" id="showpick"><span data-i18n="f_show">À quel concert ?</span><input name="show"></label>
+            <label><span data-i18n="f_note">Un mot pour le groupe (facultatif)</span><textarea name="note" rows="3"></textarea></label>
+            <p class="err" id="order-err" role="alert" hidden></p>
+          </form>
+        </div>
+        <aside class="sum">
+          <h3 data-i18n="o_sum">Récapitulatif</h3>
+          <dl>
+            <div><dt data-i18n="o_sub">Articles</dt><dd id="s-sub"></dd></div>
+            <div><dt data-i18n="o_shipc">Livraison</dt><dd id="s-ship"></dd></div>
+            <div class="tot"><dt data-i18n="o_total">Total</dt><dd id="s-tot"></dd></div>
+          </dl>
+          <button class="btn solid pay" type="submit" form="order" id="pay" data-i18n="o_pay">Payer avec SumUp</button>
+          <p class="pp-note" data-i18n="o_note">Tu choisis tout ici, puis tu paies par carte sur la page sécurisée de SumUp. Tu reçois un email de confirmation, on expédie sous une semaine.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MERCI -->
+<div class="view" id="v-merci" hidden>
+  <section class="band" style="border-top:0">
+    <div class="in merci">
+      <span class="eyebrow" id="merci-ref"></span>
+      <h2 id="merci-h" data-i18n="m_h">Merci !</h2>
+      <p id="merci-p" data-i18n="m_p">Ta commande est bien enregistrée. On te prépare ça et on t'écrit dès que c'est parti.</p>
+      <a class="btn" href="#accueil" data-i18n="m_back">Retour au site</a>
+    </div>
   </section>
 </div>
 
@@ -154,6 +218,7 @@
   </section>
 </div>
 </main>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <footer>
   <div class="in">

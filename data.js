@@ -2,7 +2,7 @@
 // CONTENU DU SITE JIRO — c'est le seul fichier à modifier au quotidien.
 // =====================================================================
 
-// Adresse de la boutique SumUp (à remplacer quand la boutique est publiée).
+// Boutique SumUp (secours tant que le paiement depuis le panier n'est pas branché).
 const SHOP_URL = "https://jiro-official.sumupstore.com";
 
 // Liens
@@ -25,22 +25,13 @@ const RELEASES = [
   { title: "Elevate Spirit", url: "https://ditto.fm/jiro-elevate-spirit" }
 ];
 
-// Produits. Chaque produit a sa page sur le site ; le bouton « Acheter » mène
-// directement à ce produit sur la boutique SumUp (url), où l'on paie.
-// id : nom court sans espace (sert d'adresse de la page produit).
-// img : photos dans le dossier img/ (la première sert de vignette).
-// sizes : tailles disponibles (vide = taille unique).
-// url : lien du produit sur SumUp (vide = page d'accueil de la boutique).
-const PRODUCTS = [
-  { id: "tshirt-shattering", fr: "T-shirt « Shattering »", en: "“Shattering” T-shirt", p: 35, img: [], sizes: ["S", "M", "L", "XL", "XXL"], url: "",
-    d: { fr: "Le t-shirt du clip « Shattering ». Impression sur t-shirt noir.", en: "The T-shirt from the “Shattering” video. Printed on a black tee." } },
-  { id: "tote-contains-riffs", fr: "Tote bag « Contains Riffs »", en: "“Contains Riffs” tote bag", p: 10, img: [], sizes: [], url: "",
-    d: { fr: "Tote bag en toile, imprimé « Contains Riffs ».", en: "Canvas tote bag with “Contains Riffs” print." } },
-  { id: "cd-adrift-in-silence", fr: "CD – Adrift in Silence", en: "CD – Adrift in Silence", p: 12, img: [], sizes: [], url: "",
-    d: { fr: "L'EP « Adrift in Silence » en CD.", en: "The “Adrift in Silence” EP on CD." } },
-  { id: "cd-elevate-spirit", fr: "CD – Elevate Spirit", en: "CD – Elevate Spirit", p: 12, img: [], sizes: [], url: "",
-    d: { fr: "L'EP « Elevate Spirit » en CD.", en: "The “Elevate Spirit” EP on CD." } }
-];
+// Les produits, les tailles, les prix et les frais de port sont dans shop.json.
+
+// Paiement : adresse du serveur de paiement (Cloudflare Worker) et clé
+// Web3Forms qui envoie chaque commande par email. Tant que CHECKOUT_API est
+// vide, le bouton « Payer » renvoie vers la boutique SumUp.
+const CHECKOUT_API = "";
+const FORM_KEY = "";
 
 // Concerts à venir, du plus proche au plus lointain.
 // Exemple : { date: "2026-12-12", city: "Paris", venue: "Le Gibus", tickets: "https://..." }
