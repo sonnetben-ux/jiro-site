@@ -31,7 +31,7 @@ const RELEASES = [
 // Web3Forms qui envoie chaque commande par email. Tant que CHECKOUT_API est
 // vide, le bouton « Payer » renvoie vers la boutique SumUp.
 const CHECKOUT_API = "https://jiro-paiement.jirotheband.workers.dev";
-const FORM_KEY = "";
+const FORM_KEY = "3d05540c-72c0-433f-9d01-30c28db6a460";
 
 // Concerts à venir, du plus proche au plus lointain.
 // Exemple : { date: "2026-12-12", city: "Paris", venue: "Le Gibus", tickets: "https://..." }
