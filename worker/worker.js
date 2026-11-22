@@ -10,13 +10,19 @@
 //   SHOP_JSON_URL  (Text)    adresse de shop.json, ex. https://sonnetben-ux.github.io/jiro-site/shop.json
 
 const SUMUP = "https://api.sumup.com/v0.1";
+// Adresses d'où le site peut appeler ce serveur (en plus de SITE_URL et de localhost).
+const ORIGINS = [
+  "https://www.jiro-official.com", "http://www.jiro-official.com",
+  "https://jiro-official.com", "http://jiro-official.com",
+  "https://sonnetben-ux.github.io"
+];
+const okOrigin = (o, env) => o === new URL(env.SITE_URL).origin || ORIGINS.includes(o) || o.startsWith("http://localhost");
 
 export default {
   async fetch(req, env) {
     const origin = req.headers.get("Origin") || "";
-    const allowed = new URL(env.SITE_URL).origin;
     const cors = {
-      "Access-Control-Allow-Origin": origin === allowed || origin.startsWith("http://localhost") ? origin : allowed,
+      "Access-Control-Allow-Origin": okOrigin(origin, env) ? origin : new URL(env.SITE_URL).origin,
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Vary": "Origin"
@@ -65,7 +71,10 @@ async function checkout(body, env) {
 
   const d = new Date();
   const ref = "JIRO-" + d.toISOString().slice(2, 10).replace(/-/g, "") + "-" + crypto.randomUUID().slice(0, 5).toUpperCase();
-  const redirect = new URL(env.SITE_URL); redirect.searchParams.set("merci", ref);
+  // Retour après paiement : la page d'où vient le client si elle est autorisée, sinon SITE_URL.
+  let redirect = new URL(env.SITE_URL);
+  try { const b = new URL(String(body.back || "")); if (okOrigin(b.origin, env)) redirect = new URL(b.origin + b.pathname); } catch (e) {}
+  redirect.searchParams.set("merci", ref);
 
   const r = await fetch(SUMUP + "/checkouts", {
     method: "POST",

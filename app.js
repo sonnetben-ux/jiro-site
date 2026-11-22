@@ -232,7 +232,7 @@ form.addEventListener("submit", async ev => {
   const pay = document.getElementById("pay"); pay.disabled = true; pay.textContent = t("o_wait");
   const f = Object.fromEntries(new FormData(form));
   try {
-    const r = await fetch(CHECKOUT_API.replace(/\/$/, "") + "/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: cart, shipping: shipSel }) });
+    const r = await fetch(CHECKOUT_API.replace(/\/$/, "") + "/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: cart, shipping: shipSel, back: location.origin + location.pathname }) });
     const o = await r.json();
     if (!r.ok || !o.url) throw new Error(o.error || "checkout");
     const where = cur.relay ? "Point relais : " + f.relay : cur.address ? [f.address, f.zip + " " + f.city, f.country].join("\n") : "Retrait au concert : " + f.show;
