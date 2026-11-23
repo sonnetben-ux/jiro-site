@@ -15,7 +15,7 @@ const T = {
     c_text: "Booking, press, a question about an order: just send an email, we answer fast.", c_btn: "Email us",
     legal: "Legal notice",
     tickets: "Tickets", soon: "Coming soon", noshow: "No dates announced yet. Follow us on Instagram to be the first to know.",
-    listen_all: "All platforms", onesize: "One size", sizes: "Size", qty: "Quantity",
+    listen_all: "All platforms", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
     add: "Add to cart", added: "Added to cart", view_cart: "View cart", pick_size: "Pick a size first.",
     soldout: "Sold out", cart: "Cart", cart_empty: "Your cart is empty.", cart_go: "See the merch", remove: "Remove",
     o_ship: "Delivery", o_you: "Your details", o_sum: "Summary", o_sub: "Items", o_shipc: "Delivery", o_total: "Total",
@@ -33,7 +33,7 @@ const T = {
 };
 const FR = {
   tickets: "Billets", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.",
-  listen_all: "Toutes les plateformes", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
+  listen_all: "Toutes les plateformes", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
   add: "Ajouter au panier", added: "Ajouté au panier", view_cart: "Voir le panier", pick_size: "Choisis d'abord une taille.",
   soldout: "Épuisé", remove: "Retirer", o_wait: "Ouverture du paiement…",
   free: "Offerte", free_from: "Livraison offerte dès {x} d'articles.", free_ok: "La livraison est offerte.",
@@ -199,7 +199,18 @@ function render() {
   });
 
   const listen = document.getElementById("listen"); listen.textContent = "";
-  RELEASES.forEach(r => { const a = el("a"); ext(a, r.url); const s = el("div", null, r.title); s.append(el("small", null, t("listen_all"))); a.append(s, el("span", null, "↗")); listen.append(a); });
+  RELEASES.forEach(r => {
+    const card = el("article", "rel");
+    const cv = el("a", "rel-cover"); ext(cv, r.url); cv.setAttribute("aria-label", r.title + " – " + t("listen_all"));
+    const im = el("img"); im.src = r.cover; im.alt = t("cover_of") + " " + r.title; im.loading = "lazy"; im.width = 600; im.height = 600; cv.append(im);
+    const info = el("div", "rel-info");
+    info.append(el("span", "eyebrow", [r.type, r.year, r.tracks.length + " " + t("tracks")].join(" · ")), el("h3", null, r.title));
+    const ol = el("ol", "tracks");
+    r.tracks.forEach(([n, d]) => { const li = el("li"); li.append(el("span", null, n), el("small", null, d)); ol.append(li); });
+    const btns = el("div", "rel-btns");
+    [["Spotify", r.spotify, "btn solid"], ["Apple Music", r.apple, "btn"], [t("listen_all"), r.url, "btn"]].forEach(([l, u, c]) => { if (!u) return; const b = el("a", c, l); ext(b, u); btns.append(b); });
+    info.append(ol, btns); card.append(cv, info); listen.append(card);
+  });
 
   const clip = document.getElementById("clip"); ext(clip, LINKS.clipUrl);
   if (LINKS.clipImg) document.getElementById("clip-img").src = LINKS.clipImg;

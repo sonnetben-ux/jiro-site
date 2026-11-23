@@ -18,11 +18,26 @@ const LINKS = {
   clipImg: "img/clip-soleil.jpg"
 };
 
-// Sorties : chaque lien ouvre une page qui liste toutes les plateformes
-// (Spotify, Apple Music, Deezer…).
+// Sorties (section « Écouter »), de la plus récente à la plus ancienne.
+// url = page qui liste toutes les plateformes ; cover = pochette ;
+// tracks = [titre, durée].
 const RELEASES = [
-  { title: "Adrift in Silence", url: "https://bfan.link/adrift-in-silence" },
-  { title: "Elevate Spirit", url: "https://ditto.fm/jiro-elevate-spirit" }
+  {
+    title: "Adrift In Silence", type: "EP", year: 2026,
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/95/40/07/954007b4-e889-cc22-a280-ca4560d67497/cover.jpg/600x600bb.jpg",
+    url: "https://bfan.link/adrift-in-silence",
+    spotify: "https://open.spotify.com/album/01dk4qcsS0D5LUVX0fEhP1",
+    apple: "https://music.apple.com/fr/album/1889326105",
+    tracks: [["Worth It", "3:44"], ["The Ascendant Fall", "3:58"], ["Shattering", "4:43"], ["You Keep The Silence", "3:37"], ["The Spell", "3:32"]]
+  },
+  {
+    title: "Elevate Spirit", type: "EP", year: 2024,
+    cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/db/42/a6db423d-dbbc-49d5-c3b8-79493a658990/5063616218400_cover.jpg/600x600bb.jpg",
+    url: "https://ditto.fm/jiro-elevate-spirit",
+    spotify: "https://open.spotify.com/album/6huYIDOrmTRTSlpQ1ukdbk",
+    apple: "https://music.apple.com/fr/album/1773941100",
+    tracks: [["Will I See You There?", "2:16"], ["Enmity Spreads", "2:48"], ["The Dread I Felt", "2:53"], ["Last To Remain", "4:14"], ["Kairos", "3:52"]]
+  }
 ];
 
 // Les produits, les tailles, les prix et les frais de port sont dans shop.json.
