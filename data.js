@@ -37,7 +37,7 @@ const FORM_KEY = "3d05540c-72c0-433f-9d01-30c28db6a460";
 // BIT_APP_ID = clé « API » du compte Bandsintown for Artists (laisser vide pour
 // n'utiliser que la liste SHOWS ci-dessous).
 const BIT_ARTIST = "id_15546483";
-const BIT_APP_ID = "";
+const BIT_APP_ID = "8396b5e25147fc2cad501f3d4f5debd8";
 
 // Concerts ajoutés à la main (en plus de Bandsintown, ou en secours),
 // du plus proche au plus lointain.
