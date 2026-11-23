@@ -5,7 +5,7 @@ const T = {
     mock: "Work in progress: merch photos and dates coming soon.",
     menu: "Menu", nav_home: "Home", nav_shows: "Shows", nav_contact: "Contact", nav_shop: "Merch",
     h_merch: "Merch", all_products: "All products",
-    h_clip: "Latest video", h_listen: "Listen", h_next: "Upcoming shows", all_shows: "All dates",
+    h_clip: "Videos", all_videos: "All videos", official_video: "Official music video", h_listen: "Listen", h_next: "Upcoming shows", all_shows: "All dates",
     live: "Live", booking_line: "Promoters, venues, festivals: get in touch from the Contact page.",
     official: "Official", see_cart: "View cart",
     s1t: "Secure payment", s1: "Card payment through SumUp.",
@@ -33,7 +33,7 @@ const T = {
 };
 const FR = {
   tickets: "Billets", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.",
-  listen_all: "Toutes les plateformes", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
+  listen_all: "Toutes les plateformes", all_videos: "Toutes les vidéos", official_video: "Clip officiel", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
   add: "Ajouter au panier", added: "Ajouté au panier", view_cart: "Voir le panier", pick_size: "Choisis d'abord une taille.",
   soldout: "Épuisé", remove: "Retirer", o_wait: "Ouverture du paiement…",
   free: "Offerte", free_from: "Livraison offerte dès {x} d'articles.", free_ok: "La livraison est offerte.",
@@ -212,9 +212,16 @@ function render() {
     info.append(ol, btns); card.append(cv, info); listen.append(card);
   });
 
-  const clip = document.getElementById("clip"); ext(clip, LINKS.clipUrl);
-  if (LINKS.clipImg) document.getElementById("clip-img").src = LINKS.clipImg;
-  document.getElementById("clip-title").textContent = LINKS.clipTitle[lang];
+  ext(document.getElementById("yt-all"), LINKS.youtube);
+  const clips = document.getElementById("clips"); clips.textContent = "";
+  (LINKS.clips || []).forEach(c => {
+    const id = (c.url.match(/[?&]v=([\w-]{11})/) || c.url.match(/youtu\.be\/([\w-]{11})/) || [])[1];
+    const a = el("a", "clip"); ext(a, c.url);
+    const im = el("img"); im.alt = ""; im.loading = "lazy"; if (id) im.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+    const pl = el("span", "play"); const i = el("i"); i.setAttribute("aria-hidden", "true"); pl.append(i);
+    const cap = el("span", "clip-cap"); cap.append(el("b", null, c.title), el("small", null, t("official_video")));
+    a.append(im, pl, cap); clips.append(a);
+  });
   renderCart();
 }
 

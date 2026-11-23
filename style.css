@@ -303,3 +303,16 @@ button.chip:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed
 .rel-btns{display:flex;flex-wrap:wrap;gap:8px}
 .rel-btns .btn{font-size:14px;padding:9px 14px}
 @media (max-width:620px){.rel{grid-template-columns:1fr;padding:16px}.rel-cover{max-width:320px}}
+
+/* clips : deux vidéos côte à côte */
+.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+.clips .clip{border:1px solid var(--steel)}
+.clips .clip:hover{border-color:var(--brass)}
+.clips .clip img{opacity:.7}
+.clips .clip:hover img{opacity:.9}
+.clips .clip .play{align-content:center}
+.clips .clip .play i{width:60px;height:60px;background:rgba(7,6,7,.55)}
+.clips .clip .play i::before{border-left-width:18px;border-top-width:11px;border-bottom-width:11px;margin-left:5px}
+.clip-cap{position:absolute;left:0;right:0;bottom:0;padding:28px 16px 14px;background:linear-gradient(transparent,rgba(7,6,7,.9));display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.clip-cap b{font-family:var(--display);text-transform:uppercase;font-size:22px;letter-spacing:.04em}
+.clip-cap small{color:var(--ash);font-size:12px;letter-spacing:.08em;text-transform:uppercase}

@@ -12,10 +12,11 @@ const LINKS = {
   facebook: "https://www.facebook.com/JIROtheband",
   youtube: "https://www.youtube.com/@jirotheband",
   email: "jirotheband@gmail.com",
-  // Dernier clip : mettre l'adresse YouTube de la vidéo et son titre.
-  clipUrl: "https://www.youtube.com/watch?v=rVrquRGNso8",
-  clipTitle: { fr: "Shattering – clip officiel", en: "Shattering – official video" },
-  clipImg: "img/clip-soleil.jpg"
+  // Clips (du plus récent au plus ancien) : adresse YouTube et titre.
+  clips: [
+    { url: "https://www.youtube.com/watch?v=rVrquRGNso8", title: "Shattering" },
+    { url: "https://www.youtube.com/watch?v=Ysh6iP88TbI", title: "Worth It" }
+  ]
 };
 
 // Sorties (section « Écouter »), de la plus récente à la plus ancienne.
