@@ -12,7 +12,7 @@
 <link rel="icon" href="img/mono.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700..900&family=Barlow:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=20261123g">
+<link rel="stylesheet" href="style.css?v=20261123h">
 </head>
 <body>
 
@@ -186,8 +186,18 @@
           <div><dt data-i18n="c_social">Réseaux</dt><dd style="font-size:16px;display:flex;flex-wrap:wrap;gap:6px 16px" id="socials"></dd></div>
         </dl>
         <div>
-          <p data-i18n="c_text" style="margin-top:0;font-size:18px">Booking, presse, question sur une commande : un email suffit, on répond vite.</p>
-          <a class="btn solid" id="mail-btn" data-i18n="c_btn">Nous écrire</a>
+          <p data-i18n="c_text" style="margin-top:0;font-size:18px">Booking, presse, question sur une commande : écris-nous ici, on répond vite.</p>
+          <form id="contact-form" novalidate>
+            <div class="row2">
+              <label><span data-i18n="f_name2">Nom</span><input name="name" autocomplete="name" required></label>
+              <label><span data-i18n="f_email">Email</span><input name="email" type="email" autocomplete="email" required></label>
+            </div>
+            <label><span data-i18n="f_msg">Message</span><textarea name="message" rows="5" required></textarea></label>
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div><button class="btn solid" type="submit" id="contact-send" data-i18n="c_btn">Envoyer</button></div>
+            <p class="err" id="contact-err" role="alert" hidden></p>
+            <p class="sent" id="contact-ok" role="status" hidden data-i18n="c_ok">Message envoyé, merci ! On te répond vite.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -225,7 +235,7 @@
   </div>
 </footer>
 
-<script src="data.js?v=20261123g"></script>
-<script src="app.js?v=20261123g"></script>
+<script src="data.js?v=20261123h"></script>
+<script src="app.js?v=20261123h"></script>
 </body>
 </html>

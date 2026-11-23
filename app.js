@@ -12,7 +12,7 @@ const T = {
     s2t: "Shipping across Europe", s2: "Colissimo or Mondial Relay pickup point, shipped within a week.",
     s3t: "Pick up at a show", s3: "Order online, collect at the merch stand on show night.",
     write: "Write to the band", c_mail: "Email", c_label: "Label", c_social: "Socials",
-    c_text: "Booking, press, a question about an order: just send an email, we answer fast.", c_btn: "Email us",
+    c_text: "Booking, press, a question about an order: write to us here, we answer fast.", c_btn: "Send", f_name2: "Name", f_msg: "Message", c_ok: "Message sent, thank you! We'll get back to you soon.", c_err: "The message could not be sent. Please try again, or email us directly.",
     legal: "Legal notice",
     tickets: "Tickets", soon: "Coming soon", noshow: "No dates announced yet. Follow us on Instagram to be the first to know.",
     listen_all: "All platforms", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
@@ -37,6 +37,7 @@ const FR = {
   add: "Ajouter au panier", added: "Ajouté au panier", view_cart: "Voir le panier", pick_size: "Choisis d'abord une taille.",
   soldout: "Épuisé", remove: "Retirer", o_wait: "Ouverture du paiement…",
   free: "Offerte", free_from: "Livraison offerte dès {x} d'articles.", free_ok: "La livraison est offerte.",
+  c_err: "Le message n'a pas pu partir. Réessaie, ou écris-nous directement par email.",
   e_fields: "Remplis les champs signalés.", e_pay: "Le paiement n'a pas pu démarrer. Réessaie, ou écris-nous.",
   m_fail: "Paiement non abouti", m_fail_p: "Ta carte n'a pas été débitée. Ton panier t'attend si tu veux réessayer.", m_cart: "Retour au panier"
 };
@@ -289,7 +290,24 @@ async function thanks(ref) {
 // Contact & réseaux
 const mailto = "mailto:" + LINKS.email;
 document.querySelectorAll("#mail, .mail-plain").forEach(a => { a.href = mailto; a.textContent = LINKS.email; });
-document.getElementById("mail-btn").href = mailto;
+const cform = document.getElementById("contact-form");
+cform.addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const err = document.getElementById("contact-err"), ok = document.getElementById("contact-ok"), btn = document.getElementById("contact-send");
+  err.hidden = true; ok.hidden = true; let bad = false;
+  ["name", "email", "message"].forEach(n => { const i = cform.elements[n], v = i.value.trim(); const no = !v || (n === "email" && !/^\S+@\S+\.\S+$/.test(v)); if (no) { i.setAttribute("aria-invalid", "true"); bad = true; } else i.removeAttribute("aria-invalid"); });
+  if (bad) { err.textContent = t("e_fields"); err.hidden = false; return; }
+  if (cform.elements.botcheck.checked) return;
+  btn.disabled = true;
+  try {
+    const f = Object.fromEntries(new FormData(cform));
+    const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ access_key: FORM_KEY, subject: "Contact site – " + f.name, from_name: "Site JIRO", replyto: f.email, "Nom": f.name, "Email": f.email, "Message": f.message }) });
+    if (!r.ok) throw new Error("mail");
+    cform.reset(); ok.hidden = false;
+  } catch (e) { err.textContent = t("c_err"); err.hidden = false; }
+  btn.disabled = false;
+});
 const soc = document.getElementById("socials");
 [["Instagram", LINKS.instagram], ["TikTok", LINKS.tiktok], ["Facebook", LINKS.facebook], ["YouTube", LINKS.youtube]].forEach(([n, u]) => { const a = el("a", null, n); ext(a, u); soc.append(a); });
 document.getElementById("year").textContent = new Date().getFullYear();
