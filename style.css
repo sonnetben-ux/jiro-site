@@ -291,8 +291,8 @@ button.chip:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed
 /* écouter : sorties avec pochette et titres */
 .listen{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:24px}
 .rel{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;background:var(--coal);border:1px solid var(--steel);padding:20px}
-.rel-cover{display:block;align-self:start;border:1px solid var(--steel);transition:border-color .2s}
-.rel-cover:hover{border-color:var(--brass)}
+.listen a.rel-cover{padding:0;background:none;display:block;align-self:start;border:1px solid var(--steel);transition:border-color .2s}
+.listen a.rel-cover:hover{border-color:var(--brass)}
 .rel-cover img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
 .rel h3{font-family:var(--display);font-size:30px;margin:6px 0 12px;line-height:1.05}
 .tracks{list-style:none;margin:0 0 18px;padding:0;counter-reset:t}
