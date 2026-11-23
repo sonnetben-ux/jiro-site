@@ -3,7 +3,7 @@ const T = {
   fr: {},
   en: {
     mock: "Work in progress: merch photos and dates coming soon.",
-    menu: "Menu", nav_home: "Home", nav_shows: "Shows", nav_contact: "Contact", nav_shop: "Shop",
+    menu: "Menu", nav_home: "Home", nav_shows: "Shows", nav_contact: "Contact", nav_shop: "Merch",
     h_merch: "Merch", all_products: "All products",
     h_clip: "Latest video", h_listen: "Listen", h_next: "Upcoming shows", all_shows: "All dates",
     live: "Live", booking_line: "Promoters, venues, festivals: get in touch from the Contact page.",
@@ -88,7 +88,7 @@ function renderProduct(p) {
   const box = document.querySelector("#v-produit .pp"); box.textContent = "";
   const gal = el("div", "pp-gal"); (p.img.length ? p.img : [""]).forEach(s => { const f = el("div", "pic"); f.append(picImg(s)); gal.append(f); });
   const info = el("div", "pp-info");
-  const back = el("a", "back", "← " + t("nav_shop")); back.href = "#boutique";
+  const back = el("a", "back", "← " + t("nav_shop")); back.href = "#merch";
   info.append(back, el("h2", null, p[lang]), el("p", "pp-price", eur(p.p)), el("p", "pp-desc", p.d[lang]));
   let size = "";
   if (p.sizes.length) {
@@ -277,13 +277,14 @@ document.getElementById("year").textContent = new Date().getFullYear();
 const VIEWS = ["accueil", "concerts", "boutique", "panier", "merci", "contact", "mentions", "produit"];
 const nav = document.getElementById("nav"), burger = document.getElementById("burger");
 function route() {
-  const h = location.hash.slice(1);
+  let h = location.hash.slice(1);
+  if (h === "merch") h = "boutique"; // #boutique reste accepté (anciens liens)
   const p = h.startsWith("produit-") && prod(h.slice(8));
   const v = p ? "produit" : VIEWS.includes(h) && h !== "produit" && h !== "merci" ? h : document.getElementById("v-merci").dataset.on ? "merci" : "accueil";
   if (p) renderProduct(p); else document.title = "JIRO – Metalcore, Paris · Site officiel";
   if (v === "panier") renderCart();
   VIEWS.forEach(x => { document.getElementById("v-" + x).hidden = x !== v; });
-  document.querySelectorAll(".nav ul a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.querySelectorAll(".nav ul a").forEach(a => { if (a.getAttribute("href") === "#" + ({ boutique: "merch", produit: "merch" }[v] || v)) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false");
   window.scrollTo(0, 0);
 }
