@@ -33,7 +33,14 @@ const RELEASES = [
 const CHECKOUT_API = "https://jiro-paiement.jirotheband.workers.dev";
 const FORM_KEY = "3d05540c-72c0-433f-9d01-30c28db6a460";
 
-// Concerts à venir, du plus proche au plus lointain.
+// Bandsintown : les dates publiées sur Bandsintown s'affichent toutes seules.
+// BIT_APP_ID = clé « API » du compte Bandsintown for Artists (laisser vide pour
+// n'utiliser que la liste SHOWS ci-dessous).
+const BIT_ARTIST = "id_15546483";
+const BIT_APP_ID = "";
+
+// Concerts ajoutés à la main (en plus de Bandsintown, ou en secours),
+// du plus proche au plus lointain.
 // Exemple : { date: "2026-12-12", city: "Paris", venue: "Le Gibus", tickets: "https://..." }
 // Les dates passées disparaissent toutes seules.
 const SHOWS = [

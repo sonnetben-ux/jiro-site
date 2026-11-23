@@ -78,9 +78,12 @@ function toast(msg, link) {
 }
 
 // ---------- rendu ----------
+let BIT_SHOWS = [];
 function upcoming() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  return SHOWS.filter(s => new Date(s.date + "T00:00:00") >= today).sort((a, b) => a.date.localeCompare(b.date));
+  const seen = new Set(BIT_SHOWS.map(s => s.date + "|" + s.city.toLowerCase()));
+  const all = BIT_SHOWS.concat(SHOWS.filter(s => !seen.has(s.date + "|" + s.city.toLowerCase())));
+  return all.filter(s => new Date(s.date + "T00:00:00") >= today).sort((a, b) => a.date.localeCompare(b.date));
 }
 function picImg(src) { const im = document.createElement("img"); im.alt = ""; im.src = src || "img/mono.png"; if (src) im.className = "photo"; im.loading = "lazy"; return im; }
 
@@ -290,6 +293,19 @@ function route() {
 }
 burger.addEventListener("click", () => { const o = nav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
 window.addEventListener("hashchange", () => { delete document.getElementById("v-merci").dataset.on; route(); });
+
+// Dates Bandsintown (si la clé est renseignée dans data.js)
+if (typeof BIT_APP_ID !== "undefined" && BIT_APP_ID) {
+  fetch("https://rest.bandsintown.com/artists/" + encodeURIComponent(BIT_ARTIST) + "/events?app_id=" + encodeURIComponent(BIT_APP_ID))
+    .then(r => r.ok ? r.json() : []).then(evs => {
+      if (!Array.isArray(evs)) return;
+      BIT_SHOWS = evs.map(e => {
+        const v = e.venue || {}, tk = (e.offers || []).find(o => o.url);
+        return { date: String(e.datetime || "").slice(0, 10), city: v.city || v.location || "", venue: v.name || "", tickets: tk ? tk.url : e.url };
+      }).filter(s => /^\d{4}-\d{2}-\d{2}$/.test(s.date));
+      render();
+    }).catch(() => {});
+}
 
 fetch("shop.json", { cache: "no-cache" }).then(r => r.json()).then(s => { SHOP = s; if (!SHOP.shipping.find(x => x.id === shipSel)) shipSel = SHOP.shipping[0].id; })
   .catch(() => {}).finally(() => {
