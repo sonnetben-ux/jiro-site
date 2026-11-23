@@ -16,11 +16,11 @@ a{color:inherit}
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(11,11,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--steel)}
 .nav .in{display:flex;align-items:center;gap:18px;height:64px}
-.nav .brand img{height:26px;width:auto;display:block}
+.nav .brand img{height:46px;width:auto;display:block}
 .nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
 .nav ul a{display:block;padding:8px 12px;text-decoration:none;font-weight:800;font-stretch:115%;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
 .nav ul a:hover,.nav ul a[aria-current="page"]{color:var(--bone)}
-.nav ul a.shop{color:var(--black);background:var(--bone);border-radius:2px}
+.nav ul a{border-radius:2px}
 .lang{display:flex;border:1px solid var(--steel);border-radius:2px}
 .lang button{background:none;border:0;color:var(--ash);font:inherit;font-size:12px;font-weight:800;letter-spacing:.1em;padding:6px 8px;cursor:pointer}
 .lang button[aria-pressed="true"]{color:var(--black);background:var(--bone)}
@@ -30,7 +30,7 @@ a{color:inherit}
   .nav ul{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--black);border-bottom:1px solid var(--steel);padding:8px max(20px,env(safe-area-inset-right,0px)) 16px max(20px,env(safe-area-inset-left,0px))}
   .nav.open ul{display:flex}
   .nav ul a{font-size:16px;padding:12px 0}
-  .nav ul a.shop{padding:12px;text-align:center;margin-top:6px}
+  .nav ul a[aria-current="page"]{padding:12px}
 }
 :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
 
@@ -140,7 +140,7 @@ body{font-stretch:100%}
 h1,h2,h3{font-stretch:100%;letter-spacing:.02em}
 .nav{background:rgba(7,6,7,.9)}
 .nav ul a{font-family:var(--display);font-size:16px;letter-spacing:.1em}
-.nav ul a.shop{background:var(--brass);color:var(--bone)}
+.nav ul a[aria-current="page"]{background:var(--brass);color:var(--bone)}
 .btn{font-family:var(--display);font-size:18px;letter-spacing:.08em;font-stretch:100%}
 .btn.solid{background:var(--brass);border-color:var(--brass);color:var(--bone)}
 .btn:hover,.btn.solid:hover{background:var(--bone);border-color:var(--bone);color:var(--black)}
