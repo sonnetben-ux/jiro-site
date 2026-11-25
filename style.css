@@ -326,3 +326,5 @@ button.chip:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed
 .pp-spec li:first-child{color:var(--bone);font-weight:600}
 .pp-specs{margin-top:28px}
 .pp-specs .pp-spec{margin-top:10px}
+.pp-gal .pic{position:relative}
+.pp-gal .pic .fit{position:absolute;left:10px;bottom:10px;margin:0;padding:5px 9px;background:rgba(10,8,9,.72);color:var(--bone);font-size:13px;letter-spacing:.02em;max-width:calc(100% - 20px)}

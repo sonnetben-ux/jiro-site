@@ -15,7 +15,7 @@ const T = {
     c_text: "Booking, press, a question about an order: write to us here, we answer fast.", c_btn: "Send", f_name2: "Name", f_msg: "Message", c_ok: "Message sent, thank you! We'll get back to you soon.", c_err: "The message could not be sent. Please try again, or email us directly.",
     legal: "Legal notice",
     tickets: "Tickets", soon: "Coming soon", noshow: "No dates announced yet. Follow us on Instagram to be the first to know.",
-    listen_all: "All platforms", details: "Details", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
+    listen_all: "All platforms", details: "Details", fit_model: "Model ", fit_left: "Left ", fit_right: "right ", fit_one: "{h} m, wears {s}", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
     add: "Add to cart", added: "Added to cart", view_cart: "View cart", pick_size: "Pick a size first.",
     soldout: "Sold out", cart: "Cart", cart_empty: "Your cart is empty.", cart_go: "See the merch", remove: "Remove",
     o_ship: "Delivery", o_you: "Your details", o_sum: "Summary", o_sub: "Items", o_shipc: "Delivery", o_total: "Total",
@@ -33,7 +33,7 @@ const T = {
 };
 const FR = {
   tickets: "Billets", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.",
-  listen_all: "Toutes les plateformes", details: "Détails", all_videos: "Toutes les vidéos", official_video: "Clip officiel", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
+  listen_all: "Toutes les plateformes", details: "Détails", fit_model: "Modèle ", fit_left: "À gauche ", fit_right: "à droite ", fit_one: "{h} m, porte du {s}", all_videos: "Toutes les vidéos", official_video: "Clip officiel", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
   add: "Ajouter au panier", added: "Ajouté au panier", view_cart: "Voir le panier", pick_size: "Choisis d'abord une taille.",
   soldout: "Épuisé", remove: "Retirer", o_wait: "Ouverture du paiement…",
   free: "Offerte", free_from: "Livraison offerte dès {x} d'articles.", free_ok: "La livraison est offerte.",
@@ -90,7 +90,7 @@ function picImg(src) { const im = document.createElement("img"); im.alt = ""; im
 
 function renderProduct(p) {
   const box = document.querySelector("#v-produit .pp"); box.textContent = "";
-  const gal = el("div", "pp-gal"); (p.img.length ? p.img : [""]).forEach(s => { const f = el("div", "pic"); f.append(picImg(s)); gal.append(f); });
+  const gal = el("div", "pp-gal"); (p.img.length ? p.img : [""]).forEach((s, i) => { const f = el("div", "pic"); f.append(picImg(s)); const ft = p.fit && p.fit[i]; if (ft) { const cm = h => (h / 100).toFixed(2).replace(".", lang === "fr" ? "," : "."); const one = ([h, z]) => t("fit_one").replace("{h}", cm(h)).replace("{s}", z); f.append(el("p", "fit", ft.length > 1 ? t("fit_left") + one(ft[0]) + " · " + t("fit_right") + one(ft[1]) : t("fit_model") + one(ft[0]))); } gal.append(f); });
   const info = el("div", "pp-info");
   const back = el("a", "back", "← " + t("nav_shop")); back.href = "#merch";
   info.append(back, ...(p.sub ? [el("span", "eyebrow", p.sub[lang])] : []), el("h2", null, p[lang]), el("p", "pp-price", eur(p.p)), el("p", "pp-desc", p.d[lang]));
