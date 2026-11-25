@@ -93,7 +93,7 @@ function renderProduct(p) {
   const gal = el("div", "pp-gal"); (p.img.length ? p.img : [""]).forEach(s => { const f = el("div", "pic"); f.append(picImg(s)); gal.append(f); });
   const info = el("div", "pp-info");
   const back = el("a", "back", "← " + t("nav_shop")); back.href = "#merch";
-  info.append(back, el("h2", null, p[lang]), el("p", "pp-price", eur(p.p)), el("p", "pp-desc", p.d[lang]));
+  info.append(back, ...(p.sub ? [el("span", "eyebrow", p.sub[lang])] : []), el("h2", null, p[lang]), el("p", "pp-price", eur(p.p)), el("p", "pp-desc", p.d[lang]));
   let size = "";
   if (p.sizes.length) {
     const s = el("fieldset", "pp-sizes"); s.append(el("legend", "eyebrow", t("sizes")));
@@ -178,7 +178,8 @@ function render() {
       const pic = el("div", "pic"); pic.append(picImg(p.img[0]));
       if (isOut(p)) pic.append(el("span", "ph", t("soldout")));
       const row = el("div", "row"); row.append(el("h3", null, p[lang]), el("span", "price", eur(p.p)));
-      a.append(pic, row, el("span", "meta", p.sizes.length ? p.sizes.join(" · ") : t("onesize")));
+      if (p.sub) a.append(pic, row, el("span", "sub", p.sub[lang]), el("span", "meta", p.sizes.length ? p.sizes.join(" · ") : t("onesize")));
+      else a.append(pic, row, el("span", "meta", p.sizes.length ? p.sizes.join(" · ") : t("onesize")));
       g.append(a);
     });
   });

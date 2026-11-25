@@ -319,3 +319,4 @@ button.chip:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed
 
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 #contact-form{margin-top:8px}
+.prod .sub{display:block;color:var(--bone);opacity:.75;font-size:14px;margin:2px 0 4px}
