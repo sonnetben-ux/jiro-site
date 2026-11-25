@@ -320,3 +320,9 @@ button.chip:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 #contact-form{margin-top:8px}
 .prod .sub{display:block;color:var(--bone);opacity:.75;font-size:14px;margin:2px 0 4px}
+.pp-spec{list-style:none;margin:4px 0 0;padding:0;max-width:52ch;border-top:1px solid var(--steel)}
+.pp-spec li{padding:8px 0 8px 18px;border-bottom:1px solid var(--steel);font-size:15px;color:var(--ash);position:relative}
+.pp-spec li::before{content:"";position:absolute;left:2px;top:15px;width:6px;height:6px;background:var(--brass)}
+.pp-spec li:first-child{color:var(--bone);font-weight:600}
+.pp-specs{margin-top:28px}
+.pp-specs .pp-spec{margin-top:10px}

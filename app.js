@@ -15,7 +15,7 @@ const T = {
     c_text: "Booking, press, a question about an order: write to us here, we answer fast.", c_btn: "Send", f_name2: "Name", f_msg: "Message", c_ok: "Message sent, thank you! We'll get back to you soon.", c_err: "The message could not be sent. Please try again, or email us directly.",
     legal: "Legal notice",
     tickets: "Tickets", soon: "Coming soon", noshow: "No dates announced yet. Follow us on Instagram to be the first to know.",
-    listen_all: "All platforms", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
+    listen_all: "All platforms", details: "Details", tracks: "tracks", cover_of: "Cover of", onesize: "One size", sizes: "Size", qty: "Quantity",
     add: "Add to cart", added: "Added to cart", view_cart: "View cart", pick_size: "Pick a size first.",
     soldout: "Sold out", cart: "Cart", cart_empty: "Your cart is empty.", cart_go: "See the merch", remove: "Remove",
     o_ship: "Delivery", o_you: "Your details", o_sum: "Summary", o_sub: "Items", o_shipc: "Delivery", o_total: "Total",
@@ -33,7 +33,7 @@ const T = {
 };
 const FR = {
   tickets: "Billets", soon: "Bientôt", noshow: "Pas de date annoncée pour l'instant. Suivez-nous sur Instagram pour l'apprendre en premier.",
-  listen_all: "Toutes les plateformes", all_videos: "Toutes les vidéos", official_video: "Clip officiel", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
+  listen_all: "Toutes les plateformes", details: "Détails", all_videos: "Toutes les vidéos", official_video: "Clip officiel", tracks: "titres", cover_of: "Pochette de", onesize: "Taille unique", sizes: "Taille", qty: "Quantité",
   add: "Ajouter au panier", added: "Ajouté au panier", view_cart: "Voir le panier", pick_size: "Choisis d'abord une taille.",
   soldout: "Épuisé", remove: "Retirer", o_wait: "Ouverture du paiement…",
   free: "Offerte", free_from: "Livraison offerte dès {x} d'articles.", free_ok: "La livraison est offerte.",
@@ -121,6 +121,7 @@ function renderProduct(p) {
     addToCart(p.id, size, qty); toast(t("added") + " : " + p[lang] + (size ? " (" + size + ")" : ""), t("view_cart"));
   };
   info.append(add, msg);
+  if (p.spec) { const sp = el("div", "pp-specs"); sp.append(el("span", "eyebrow", t("details"))); const ul = el("ul", "pp-spec"); p.spec[lang].forEach(x => ul.append(el("li", null, x))); sp.append(ul); info.append(sp); }
   box.append(gal, info);
   document.title = p[lang] + " · JIRO";
 }
