@@ -32,11 +32,11 @@
       "d": { "fr": "Tote bag en toile écrue, imprimé « Contains Riffs ».", "en": "Natural canvas tote bag with “Contains Riffs” print." } },
     { "id": "cd-adrift-in-silence", "fr": "Adrift in Silence", "en": "Adrift in Silence", "sub": { "fr": "CD · EP 2026", "en": "CD · EP 2026" }, "p": 12,
       "sizes": [], "soldout": [],
-      "img": ["https://images.sumup.com/img_3TSY2KB4MV8FZR3JJAGNHD9Z15"],
+      "img": ["img/merch/cd-adrift-in-silence-1.jpg?v=1", "img/merch/cd-adrift-in-silence-2.jpg?v=1"],
       "d": { "fr": "L'EP « Adrift in Silence » en CD.", "en": "The “Adrift in Silence” EP on CD." } },
     { "id": "cd-elevate-spirit", "fr": "Elevate Spirit", "en": "Elevate Spirit", "sub": { "fr": "CD · EP 2024", "en": "CD · EP 2024" }, "p": 12,
       "sizes": [], "soldout": [],
-      "img": ["https://images.sumup.com/img_4ZDRRS3PFW85X80ZR9S6CZBQBV"],
+      "img": ["img/merch/cd-elevate-spirit-1.jpg?v=1"],
       "d": { "fr": "L'EP « Elevate Spirit » en CD.", "en": "The “Elevate Spirit” EP on CD." } }
   ]
 }
