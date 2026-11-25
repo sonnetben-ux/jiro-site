@@ -15,6 +15,7 @@
     { "id": "tee-adrift-noir", "fr": "Blason", "en": "Crest", "sub": { "fr": "T-shirt noir", "en": "Black T-shirt" }, "p": 25,
       "sizes": ["S", "M", "L", "XL", "2XL"], "soldout": [],
       "img": ["img/merch/tee-adrift-noir-1.jpg?v=3", "img/merch/tee-adrift-noir-2.jpg?v=3", "img/merch/tee-adrift-noir-3.jpg?v=3", "img/merch/tee-adrift-noir-4.jpg?v=3"],
+      "spec": {"fr": ["AS Colour Box Tee (réf. 5030), coloris noir", "Coton peigné 100 %, très épais : 240 g/m²", "Coupe relax, épaules tombantes, corps plus court", "Col large à double surpiqûre, bande de propreté d'épaule à épaule", "Impression devant, dos et manche", "Pré-rétréci au lavage", "Lavage à froid, pas de sèche-linge, ne pas repasser l'impression"], "en": ["AS Colour Box Tee (ref. 5030), black", "100% combed cotton, extra heavyweight: 240 gsm", "Relaxed fit, dropped shoulders, shorter body", "Wide twin-stitched neck rib, shoulder-to-shoulder tape", "Printed on the front, back and sleeve", "Preshrunk", "Wash cold, do not tumble dry, do not iron the print"]},
       "d": { "fr": "T-shirt noir, monogramme JIRO sur la poitrine et logo sur la manche.", "en": "Black tee, JIRO monogram on the chest and logo on the sleeve." } },
     { "id": "tee-adrift-beige", "fr": "Adrift", "en": "Adrift", "sub": { "fr": "T-shirt crème", "en": "Cream T-shirt" }, "p": 30,
       "sizes": ["S", "M", "L", "XL", "2XL"], "soldout": [],
